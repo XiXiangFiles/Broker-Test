@@ -7,36 +7,30 @@ const opt = {
 }
 const client = mqtt.connect('mqtt://mqtt-server', opt)
 const options = { qos: 2 }
-const promise1 = new Promise((resolve, reject) => {
-  client.on('connect', function () {
-    client.subscribe('publisher', function (err) {
+const times = parseInt(process.env.TIMES)
+client.on('connect', function () {
+  client.subscribe('publisher')
+})
+function send (topic, message, options) {
+  return new Promise(function (resolve, reject) {
+    client.publish(topic, message, options, function (err) {
       if (err) {
-        console.error(err)
+        console.log(err)
       }
+      resolve()
     })
   })
-  client.on('message', function (topic, message) {
-    topic = topic.toString('utf8')
-    message = message.toString('utf8')
-    resolve(message)
-  })
-})
-
-promise1.then((value) => {
-  console.log(value)
-  const promise2 = new Promise((resolve, reject) => {
-    for (let i = 0; i < parseInt(process.env.TIMES); i++) {
-      client.publish('subscriber', shajs('sha512').update(uuid.v4().toString()).digest('hex'), options)
-      if (i === parseInt(process.env.TIMES) - 1) {
-        client.publish('subscriber', 'finish', options)
-        console.log('done')
-        resolve()
-      }
+}
+client.on('message', function (topic, message) {
+  topic = topic.toString('utf8')
+  message = message.toString('utf8')
+  for (let i = 0; i < times; i++) {
+    send('subscriber', shajs('sha512').update(uuid.v4().toString()).digest('hex'), options).then()
+    if (i === times - 1) {
+      send('subscriber', 'finish', options).then(function () {})
     }
-  })
-  promise2.then(function (val) {})
+  }
 })
-
 client.on('error', function (err) {
   console.log(err)
 })

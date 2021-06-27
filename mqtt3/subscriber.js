@@ -16,7 +16,7 @@ let i = 0
 
 const client = mqtt.connect('mqtt://mqtt-server', opt)
 client.on('connect', function () {
-  client.subscribe('subscriber', function (err) {
+  client.subscribe('subscriber', { qos: 0 }, function (err) {
     if (err) {
       console.error(err)
     }
@@ -25,7 +25,7 @@ client.on('connect', function () {
 try {
   fs.mkdirSync(`result/${process.env.PUBLISHER_NUM}`)
 } catch (err) {}
-
+let index = 0
 client.on('message', function (topic, message) {
   topic = topic.toString('utf8')
   message = message.toString('utf8')
@@ -33,7 +33,6 @@ client.on('message', function (topic, message) {
     isStart = true
     res.start = Date.now()
   }
-  console.log(message)
   percent = (++i / parseInt(process.env.TIMES)).toFixed(2)
   if (tmp < percent) {
     tmp = percent
@@ -43,6 +42,7 @@ client.on('message', function (topic, message) {
   if (message === 'finish') {
     finish++
   }
+  console.log(++index)
   if (finish === parseInt(process.env.PUBLISHER_NUM)) {
     res.end = Date.now()
     res.numbers = numberMessage

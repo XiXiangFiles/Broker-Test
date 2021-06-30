@@ -1,0 +1,33 @@
+version: "3.9"
+
+services: 
+    mqtt-server:
+        build: 
+            context: ./mqtt_setting
+            dockerfile: Dockerfile
+        networks: 
+            - blog
+        ports: 
+            - 1883:1883
+        entrypoint: mosquitto -c /mosquitto-no-auth.conf
+
+    publisher:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        networks: 
+            - blog
+        volumes: 
+            - ${PWD}:/workspace
+        environment:
+            - FILENAME=publisher
+            - TIMES=${TIMES}
+            - PUBLISHER_NUM=${PUBLISHER_NUM}
+        entrypoint: sh scripts/run_publisher.sh
+        tty: true
+        restart: always
+
+networks: 
+    blog:
+        name: blog
+        driver: bridge

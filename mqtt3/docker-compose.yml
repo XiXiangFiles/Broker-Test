@@ -23,7 +23,6 @@ services:
             - FILENAME=publisher
             - TIMES=${TIMES}
             - PUBLISHER_NUM=${PUBLISHER_NUM}
-        entrypoint: sh scripts/run_publisher.sh
         tty: true
         restart: always
 
@@ -40,7 +39,6 @@ services:
             - FILENAME=subscriber_1
             - TIMES=${TIMES}
             - PUBLISHER_NUM=${PUBLISHER_NUM}
-        entrypoint: sh scripts/run_subscriber.sh 
         tty: true
         restart: always
 

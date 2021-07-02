@@ -4,7 +4,9 @@ import time
 import os
 import threading
 import logging
-logging.basicConfig(filename='publisher_{}.log'.format(os.environ['NUM']), level=logging.INFO)
+import json
+
+logging.basicConfig(filename='publishers_{}.log'.format(os.environ['NUM']), level=logging.INFO)
 
 result = {}
 total_times = int(os.environ['TIMES'])
@@ -28,7 +30,6 @@ def on_message(client, userdata, msg):
             except Exception as err:
                 pass
 
-
 def job():
     while(True):
         if not result['flag']:
@@ -37,7 +38,9 @@ def job():
                 end = result['end'] * 10000000
                 sub = int(end- start)
                 result['tps'] = (result['success_times']/sub) * 10000000
-                logging.info(result)
+                json_result = json.dumps(result)
+                logging.info(json_result)
+                print(json_result)
                 break
         time.sleep(1)
 

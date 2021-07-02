@@ -26,7 +26,151 @@ services:
         tty: true
         entrypoint: python3 publisher.py
         restart: always
+    
+    # publisher2:
+    #     build: 
+    #         context: .
+    #         dockerfile: Dockerfile
+    #     networks: 
+    #         - blog
+    #     volumes: 
+    #         - ${PWD}:/workspace
+    #     environment:
+    #         - NUM=2
+    #         - TIMES=${TIMES}
+    #         - PUBLISHER_NUM=${PUBLISHER_NUM}
+    #     tty: true
+    #     entrypoint: python3 publisher.py
+    #     restart: always
 
+    # publisher3:
+    #     build: 
+    #         context: .
+    #         dockerfile: Dockerfile
+    #     networks: 
+    #         - blog
+    #     volumes: 
+    #         - ${PWD}:/workspace
+    #     environment:
+    #         - NUM=3
+    #         - TIMES=${TIMES}
+    #         - PUBLISHER_NUM=${PUBLISHER_NUM}
+    #     tty: true
+    #     entrypoint: python3 publisher.py
+    #     restart: always
+
+    # publisher4:
+    #     build: 
+    #         context: .
+    #         dockerfile: Dockerfile
+    #     networks: 
+    #         - blog
+    #     volumes: 
+    #         - ${PWD}:/workspace
+    #     environment:
+    #         - NUM=4
+    #         - TIMES=${TIMES}
+    #         - PUBLISHER_NUM=${PUBLISHER_NUM}
+    #     tty: true
+    #     entrypoint: python3 publisher.py
+    #     restart: always
+        
+    # publisher5:
+    #     build: 
+    #         context: .
+    #         dockerfile: Dockerfile
+    #     networks: 
+    #         - blog
+    #     volumes: 
+    #         - ${PWD}:/workspace
+    #     environment:
+    #         - NUM=5
+    #         - TIMES=${TIMES}
+    #         - PUBLISHER_NUM=${PUBLISHER_NUM}
+    #     tty: true
+    #     entrypoint: python3 publisher.py
+    #     restart: always
+
+    # publisher6:
+    #     build: 
+    #         context: .
+    #         dockerfile: Dockerfile
+    #     networks: 
+    #         - blog
+    #     volumes: 
+    #         - ${PWD}:/workspace
+    #     environment:
+    #         - NUM=6
+    #         - TIMES=${TIMES}
+    #         - PUBLISHER_NUM=${PUBLISHER_NUM}
+    #     tty: true
+    #     entrypoint: python3 publisher.py
+    #     restart: always
+                
+    # publisher7:
+    #     build: 
+    #         context: .
+    #         dockerfile: Dockerfile
+    #     networks: 
+    #         - blog
+    #     volumes: 
+    #         - ${PWD}:/workspace
+    #     environment:
+    #         - NUM=7
+    #         - TIMES=${TIMES}
+    #         - PUBLISHER_NUM=${PUBLISHER_NUM}
+    #     tty: true
+    #     entrypoint: python3 publisher.py
+    #     restart: always
+
+
+    # publisher8:
+    #     build: 
+    #         context: .
+    #         dockerfile: Dockerfile
+    #     networks: 
+    #         - blog
+    #     volumes: 
+    #         - ${PWD}:/workspace
+    #     environment:
+    #         - NUM=8
+    #         - TIMES=${TIMES}
+    #         - PUBLISHER_NUM=${PUBLISHER_NUM}
+    #     tty: true
+    #     entrypoint: python3 publisher.py
+    #     restart: always
+    
+    # publisher9:
+    #     build: 
+    #         context: .
+    #         dockerfile: Dockerfile
+    #     networks: 
+    #         - blog
+    #     volumes: 
+    #         - ${PWD}:/workspace
+    #     environment:
+    #         - NUM=9
+    #         - TIMES=${TIMES}
+    #         - PUBLISHER_NUM=${PUBLISHER_NUM}
+    #     tty: true
+    #     entrypoint: python3 publisher.py
+    #     restart: always
+                    
+    # publisher10:
+    #     build: 
+    #         context: .
+    #         dockerfile: Dockerfile
+    #     networks: 
+    #         - blog
+    #     volumes: 
+    #         - ${PWD}:/workspace
+    #     environment:
+    #         - NUM=10
+    #         - TIMES=${TIMES}
+    #         - PUBLISHER_NUM=${PUBLISHER_NUM}
+    #     tty: true
+    #     entrypoint: python3 publisher.py
+    #     restart: always
 
     subscriber:
         build: 
@@ -42,8 +186,7 @@ services:
         entrypoint: python3 subscriber.py
         tty: true
         restart: always
-
-    subscriber:
+    subscriber2:
         build: 
             context: .
             dockerfile: Dockerfile
@@ -52,12 +195,125 @@ services:
         volumes: 
             - ${PWD}:/workspace
         environment: 
-            - NUM=1
+            - NUM=2
             - TIMES=${TIMES}
         entrypoint: python3 subscriber.py
         tty: true
         restart: always
 
+    subscriber3:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        networks: 
+            - blog
+        volumes: 
+            - ${PWD}:/workspace
+        environment: 
+            - NUM=3
+            - TIMES=${TIMES}
+        entrypoint: python3 subscriber.py
+        tty: true
+        restart: always
+    subscriber4:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        networks: 
+            - blog
+        volumes: 
+            - ${PWD}:/workspace
+        environment: 
+            - NUM=4
+            - TIMES=${TIMES}
+        entrypoint: python3 subscriber.py
+        tty: true
+        restart: always
+    subscriber5:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        networks: 
+            - blog
+        volumes: 
+            - ${PWD}:/workspace
+        environment: 
+            - NUM=5
+            - TIMES=${TIMES}
+        entrypoint: python3 subscriber.py
+        tty: true
+        restart: always
+    subscriber6:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        networks: 
+            - blog
+        volumes: 
+            - ${PWD}:/workspace
+        environment: 
+            - NUM=6
+            - TIMES=${TIMES}
+        entrypoint: python3 subscriber.py
+        tty: true
+        restart: always
+
+    subscriber7:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        networks: 
+            - blog
+        volumes: 
+            - ${PWD}:/workspace
+        environment: 
+            - NUM=7
+            - TIMES=${TIMES}
+        entrypoint: python3 subscriber.py
+        tty: true
+        restart: always
+    subscriber8:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        networks: 
+            - blog
+        volumes: 
+            - ${PWD}:/workspace
+        environment: 
+            - NUM=8
+            - TIMES=${TIMES}
+        entrypoint: python3 subscriber.py
+        tty: true
+        restart: always
+    subscriber9:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        networks: 
+            - blog
+        volumes: 
+            - ${PWD}:/workspace
+        environment: 
+            - NUM=9
+            - TIMES=${TIMES}
+        entrypoint: python3 subscriber.py
+        tty: true
+        restart: always
+    subscriber10:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        networks: 
+            - blog
+        volumes: 
+            - ${PWD}:/workspace
+        environment: 
+            - NUM=10
+            - TIMES=${TIMES}
+        entrypoint: python3 subscriber.py
+        tty: true
+        restart: always
 networks: 
     blog:
         name: blog

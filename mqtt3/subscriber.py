@@ -5,8 +5,9 @@ import time
 import uuid
 import threading
 import logging
+import json
 
-logging.basicConfig(filename='subscriber_{}.log'.format(os.environ['NUM']), level=logging.INFO)
+logging.basicConfig(filename='subscribers_{}.log'.format(os.environ['NUM']), level=logging.INFO)
 
 
 # The callback for when a PUBLISH message is received from the server.
@@ -37,7 +38,7 @@ def job():
                 sub = int(end- start)
                 result['tps'] = (result['pkg_num']/sub) * 10000000
                 result['qos'] = (result['pkg_num']/result['total_pkg']) * 100
-                logging.info(result)
+                logging.info(json.dumps(result))
                 break
         time.sleep(1)
     

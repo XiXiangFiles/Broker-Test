@@ -20,10 +20,11 @@ services:
         volumes: 
             - ${PWD}:/workspace
         environment:
-            - FILENAME=publisher
+            - NUM=1
             - TIMES=${TIMES}
             - PUBLISHER_NUM=${PUBLISHER_NUM}
         tty: true
+        entrypoint: python3 publisher.py
         restart: always
 
 
@@ -36,9 +37,24 @@ services:
         volumes: 
             - ${PWD}:/workspace
         environment: 
-            - FILENAME=subscriber_1
+            - NUM=1
             - TIMES=${TIMES}
-            - PUBLISHER_NUM=${PUBLISHER_NUM}
+        entrypoint: python3 subscriber.py
+        tty: true
+        restart: always
+
+    subscriber:
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        networks: 
+            - blog
+        volumes: 
+            - ${PWD}:/workspace
+        environment: 
+            - NUM=1
+            - TIMES=${TIMES}
+        entrypoint: python3 subscriber.py
         tty: true
         restart: always
 
